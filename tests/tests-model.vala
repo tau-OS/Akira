@@ -1,26 +1,25 @@
 /*
-* Copyright (c) 2019 Alecaddd (http://alecaddd.com)
-*
-* This file is part of Akira.
-*
-* Akira is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
+ * Copyright (c) 2019-2021 Alecaddd (https://alecaddd.com)
+ *
+ * This file is part of Akira.
+ *
+ * Akira is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
 
-* Akira is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
+ * Akira is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
 
-* You should have received a copy of the GNU General Public License
-* along with Akira.  If not, see <https://www.gnu.org/licenses/>.
-*
-* Authored by: Alessandro "Alecaddd" Castellani <castellani.ale@gmail.com>
-*/
+ * You should have received a copy of the GNU General Public License
+ * along with Akira. If not, see <https://www.gnu.org/licenses/>.
+ *
+ * Authored by: Alessandro "Alecaddd" Castellani <castellani.ale@gmail.com>
+ */
 
 public delegate void Akira.TestCaseFunc ();
-public GLib.SettingsSchemaSource schema_source;
 
 private class Akira.TestSuiteAdaptor {
     public string name;
@@ -154,23 +153,25 @@ public class Akira.TestRunner : GLib.Object {
     }
 
     public virtual void global_teardown () {
-        if (this.tmp_dir != null) {
-            var tmp_dir_path = this.tmp_dir.get_path ();
-            var delete_tmp_result = 0;
+        if (this.tmp_dir == null) {
+            return;
+        }
 
-            try {
-                GLib.Process.spawn_command_line_sync (
-                    "rm -rf %s".printf (tmp_dir_path),
-                    null,
-                    null,
-                    out delete_tmp_result);
-            } catch (GLib.SpawnError error) {
-                GLib.warning (error.message);
-            }
+        var tmp_dir_path = this.tmp_dir.get_path ();
+        var delete_tmp_result = 0;
 
-            if (delete_tmp_result != 0) {
-                GLib.warning ("Could not delete temporary directory '%s'", tmp_dir_path);
-            }
+        try {
+            GLib.Process.spawn_command_line_sync (
+                "rm -rf %s".printf (tmp_dir_path),
+                null,
+                null,
+                out delete_tmp_result);
+        } catch (GLib.SpawnError error) {
+            GLib.warning (error.message);
+        }
+
+        if (delete_tmp_result != 0) {
+            GLib.warning ("Could not delete temporary directory '%s'", tmp_dir_path);
         }
     }
 

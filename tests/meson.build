@@ -18,10 +18,10 @@ canvas_tests = executable (
     'canvas_tests',
     'tests-model.vala',
 
-    'canvas/test-fills-item.vala',
+    'canvas/test-generate-items.vala',
     'canvas/test-main.vala',
     c_args: test_cflags,
-    dependencies: [akira_dep]
+    dependencies: deps + [akira_dep]
 )
 
 test ('canvas_tests', canvas_tests, env: test_env)

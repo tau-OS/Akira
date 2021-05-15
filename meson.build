@@ -5,7 +5,6 @@ project('com.github.akiraux.akira', 'vala', 'c',
 akira_prefix = get_option('prefix')
 akira_datadir = join_paths(akira_prefix, get_option('datadir'))
 akira_pkgdatadir = join_paths(akira_datadir, meson.project_name())
-install_tests = get_option('install-tests')
 
 source_root = meson.current_source_dir()
 vapi_dir = join_paths(source_root, 'vapi')
@@ -66,8 +65,9 @@ subdir('src')
 subdir('data')
 subdir('po')
 
-if install_tests
-    subdir('tests')
-endif
+# Test directory for local debug only as we don't currently have a CI that can
+# handle heavy Gtk tests.
+# Uncomment the line below and run `meson test` to run all tests.
+ subdir('tests')
 
 meson.add_install_script('build-aux/meson/post_install.py')
