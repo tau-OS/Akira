@@ -23,7 +23,7 @@ public class Akira.ViewLayers.ViewLayerGrid : ViewLayer {
     private const double UI_LINE_WIDTH = 1.0;
 
     private Geometry.Rectangle bounds;
-    private Gdk.RGBA _color { get; set; default = Gdk.RGBA () { alpha = 1.0 }; }
+    private Gdk.RGBA _color { get; set; default = Gdk.RGBA () { alpha = 1.0f }; }
     private double _spacing { get; set; default = 1.0; }
 
     public double spacing {

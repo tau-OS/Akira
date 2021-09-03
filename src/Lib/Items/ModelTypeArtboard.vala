@@ -33,11 +33,11 @@ public class Akira.Lib.Items.ModelTypeArtboard : ModelType {
         new_item.components.flipped = Lib.Components.Components.default_flipped ();
 
         new_item.components.borders = new Lib.Components.Borders.single_color (
-            Lib.Components.Color (0.0, 0.0, 0.0, 1.0),
+            Lib.Components.Color (0.0f, 0.0f, 0.0f, 1.0f),
             2
         );
 
-        new_item.components.fills = new Lib.Components.Fills.single_color (Lib.Components.Color (1.0, 1.0, 1.0, 1.0));
+        new_item.components.fills = new Lib.Components.Fills.single_color (Lib.Components.Color (1.0f, 1.0f, 1.0f, 1.0f));
 
         var layout_data = Components.Layout.LayoutData () {
             can_rotate = true,

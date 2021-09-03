@@ -43,7 +43,7 @@ public class Akira.Lib.Components.CompiledBorder : Copyable<CompiledBorder> {
     }
 
     public CompiledBorder.as_empty () {
-        _color = Gdk.RGBA () { red = 0.0, green = 0.0, blue = 0.0, alpha = 0.0};
+        _color = Gdk.RGBA () { red = 0.0f, green = 0.0f, blue = 0.0f, alpha = 0.0f};
         _size = 0;
         _visible = false;
     }
@@ -66,7 +66,7 @@ public class Akira.Lib.Components.CompiledBorder : Copyable<CompiledBorder> {
         unowned var opacity = components.opacity;
 
         // Set an initial arbitrary color with full transparency.
-        rgba_border.alpha = 0;
+        rgba_border.alpha = 0.0f;
 
         if (borders == null) {
             return new CompiledBorder (rgba_border, size, false);
@@ -88,7 +88,7 @@ public class Akira.Lib.Components.CompiledBorder : Copyable<CompiledBorder> {
         // Apply the mixed RGBA value only if we had one.
         if (has_colors && opacity != null) {
             // Keep in consideration the global opacity to properly update the border color.
-            rgba_border.alpha = rgba_border.alpha * opacity.opacity / 100;
+            rgba_border.alpha = rgba_border.alpha * opacity.opacity / 100.0f;
         }
 
         return new CompiledBorder (rgba_border, size, has_colors && size != 0);

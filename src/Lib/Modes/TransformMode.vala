@@ -136,8 +136,10 @@ public class Akira.Lib.Modes.TransformMode : AbstractInteractionMode {
     }
 
     public override bool button_press_event (Gdk.ButtonEvent event) {
-        initial_drag_state.press_x = event.x;
-        initial_drag_state.press_y = event.y;
+        double ev_pos_x, ev_pos_y;
+        event.get_position (out ev_pos_x, out ev_pos_y);
+        initial_drag_state.press_x = ev_pos_x;
+        initial_drag_state.press_y = ev_pos_y;
         return true;
     }
 
@@ -147,14 +149,17 @@ public class Akira.Lib.Modes.TransformMode : AbstractInteractionMode {
     }
 
     public override bool motion_notify_event (Gdk.MotionEvent event) {
+        double ev_pos_x, ev_pos_y;
+        event.get_position (out ev_pos_x, out ev_pos_y);
+
         switch (nob) {
             case Utils.Nobs.Nob.NONE:
                 move_from_event (
                     view_canvas,
                     selection,
                     initial_drag_state,
-                    event.x,
-                    event.y,
+                    ev_pos_x,
+                    ev_pos_y,
                     ref transform_extra_context.snap_guide_data
                 );
                 break;
@@ -163,8 +168,8 @@ public class Akira.Lib.Modes.TransformMode : AbstractInteractionMode {
                     view_canvas,
                     selection,
                     initial_drag_state,
-                    event.x,
-                    event.y
+                    ev_pos_x,
+                    ev_pos_y
                 );
                 break;
             default:
@@ -173,8 +178,8 @@ public class Akira.Lib.Modes.TransformMode : AbstractInteractionMode {
                     selection,
                     initial_drag_state,
                     nob,
-                    event.x,
-                    event.y
+                    ev_pos_x,
+                    ev_pos_y
                 );
                 break;
         }

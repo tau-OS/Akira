@@ -23,7 +23,7 @@ public struct Akira.Lib.Components.Color {
     public Gdk.RGBA rgba;
     public bool hidden;
 
-    public Color (double r = 0.0, double g = 0.0, double b = 0.0, double a = 1.0, bool hidden = false) {
+    public Color (float r = 0, float g = 0, float b = 0, float a = 0, bool hidden = false) {
         rgba = Gdk.RGBA () { red = r, green = g, blue = b, alpha = a };
     }
 
@@ -33,20 +33,20 @@ public struct Akira.Lib.Components.Color {
     }
 
     public Color.deserialized (Json.Object obj) {
-        var r = obj.get_double_member ("r");
-        var g = obj.get_double_member ("g");
-        var b = obj.get_double_member ("b");
-        var a = obj.get_double_member ("a");
+        float r = (float)obj.get_double_member ("r");
+        float g = (float)obj.get_double_member ("g");
+        float b = (float)obj.get_double_member ("b");
+        float a = (float)obj.get_double_member ("a");
         rgba = Gdk.RGBA () { red = r, green = g, blue = b, alpha = a };
         hidden = obj.get_boolean_member ("hidden");
     }
 
     public Json.Node serialize () {
             var obj = new Json.Object ();
-            obj.set_double_member ("r", rgba.red);
-            obj.set_double_member ("g", rgba.green);
-            obj.set_double_member ("b", rgba.blue);
-            obj.set_double_member ("a", rgba.alpha);
+            obj.set_double_member ("r", (double)rgba.red);
+            obj.set_double_member ("g", (double)rgba.green);
+            obj.set_double_member ("b", (double)rgba.blue);
+            obj.set_double_member ("a", (double)rgba.alpha);
             obj.set_boolean_member ("hidden", hidden);
             var node = new Json.Node (Json.NodeType.OBJECT);
             node.set_object (obj);

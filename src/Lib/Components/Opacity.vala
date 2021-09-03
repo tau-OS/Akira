@@ -20,27 +20,27 @@
  */
 
 public class Akira.Lib.Components.Opacity : Component, Copyable<Opacity> {
-    private double _opacity;
+    private float _opacity;
 
-    public double opacity {
+    public float opacity {
         get { return _opacity; }
     }
 
-    public Opacity (double opacity) {
-        if (opacity < 0.0) {
-            _opacity = 0.0;
+    public Opacity (float opacity) {
+        if (opacity < 0.0f) {
+            _opacity = 0.0f;
             return;
         }
 
-        _opacity = opacity <= 100.0 ? opacity : 100.0;
+        _opacity = opacity <= 100.0f ? opacity : 100.0f;
     }
 
     public Opacity.deserialized (Json.Object obj) {
-        _opacity = obj.get_double_member ("opacity");
+        _opacity = (float) obj.get_double_member ("opacity");
     }
 
     protected override void serialize_details (ref Json.Object obj) {
-        obj.set_double_member ("opacity", _opacity);
+        obj.set_double_member ("opacity", (double)_opacity);
     }
 
     public Opacity copy () {

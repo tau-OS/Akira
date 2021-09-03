@@ -79,13 +79,16 @@ public class Akira.Lib.Modes.ItemInsertMode : AbstractInteractionMode {
             return transform_mode.button_press_event (event);
         }
 
-        if (event.button == Gdk.BUTTON_PRIMARY) {
+        if (event.get_button () == Gdk.BUTTON_PRIMARY) {
+            double ev_pos_x, ev_pos_y;
+            event.get_position (out ev_pos_x, out ev_pos_y);
+
             bool is_artboard;
-            var instance = construct_item (item_insert_type, event.x, event.y, out is_artboard);
+            var instance = construct_item (item_insert_type, ev_pos_x, ev_pos_y, out is_artboard);
 
             var group_id = Lib.Items.Model.ORIGIN_ID;
             if (!is_artboard) {
-                group_id = view_canvas.items_manager.first_group_at (event.x, event.y).id;
+                group_id = view_canvas.items_manager.first_group_at (ev_pos_x, ev_pos_y).id;
             }
 
             view_canvas.items_manager.add_item_to_group (group_id, instance, false);

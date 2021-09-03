@@ -24,7 +24,7 @@ public class Akira.Layouts.MainWindow : Gtk.Grid {
 
     public Akira.Layouts.MainViewCanvas main_view_canvas;
 
-    private Layouts.Sidebars.LayersSidebar layers_sidebar;
+    //private Layouts.Sidebars.LayersSidebar layers_sidebar;
 
     public Gtk.Paned pane;
     public Gtk.Paned pane2;
@@ -35,18 +35,22 @@ public class Akira.Layouts.MainWindow : Gtk.Grid {
 
     construct {
         main_view_canvas = new Layouts.MainViewCanvas (window);
-        layers_sidebar = new Layouts.Sidebars.LayersSidebar (main_view_canvas.canvas);
+        //layers_sidebar = new Layouts.Sidebars.LayersSidebar (main_view_canvas.canvas);
 
         pane = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
         pane2 = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        pane.pack2 (pane2, true, false);
-        pane2.pack1 (main_view_canvas, true, true);
+        pane.set_end_child (pane2);
+        pane.set_resize_end_child (true);
+        pane.set_shrink_end_child (false);
+        pane2.set_start_child (main_view_canvas);
+        pane2.set_resize_start_child (true);
+        pane2.set_shrink_start_child (true);
 
         if (!settings.get_boolean ("invert-sidebar")) {
             // pane.pack1 (left_sidebar, false, false);
-            pane2.pack2 (layers_sidebar, false, false);
+            //pane2.pack2 (layers_sidebar, false, false);
         } else {
-            pane.pack1 (layers_sidebar, false, false);
+            //pane.pack1 (layers_sidebar, false, false);
             // pane2.pack2 (left_sidebar, false, false);
         }
 
@@ -62,13 +66,13 @@ public class Akira.Layouts.MainWindow : Gtk.Grid {
      * all items have actually been created.
      */
     public void show_added_layers () {
-        layers_sidebar.layers_panel.refresh_lists ();
+        //layers_sidebar.layers_panel.refresh_lists ();
     }
 
     /*
      * Pass the list of nodes ids to be removed from the layers list.
      */
     public void remove_layers (GLib.Array<int> ids) {
-        layers_sidebar.layers_panel.delete_selected_layers (ids);
+        //layers_sidebar.layers_panel.delete_selected_layers (ids);
     }
 }

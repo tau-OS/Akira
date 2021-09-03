@@ -45,8 +45,9 @@ public class Akira.Layouts.MainViewCanvas : Gtk.Grid {
 
         main_overlay = new Gtk.Overlay ();
 
-        main_scroll = new Gtk.ScrolledWindow (null, null);
-        main_scroll.expand = true;
+        main_scroll = new Gtk.ScrolledWindow ();
+        main_scroll.vexpand = true;
+        main_scroll.hexpand = true;
 
         // Overlay the scrollbars only if mouse pointer is inside canvas
         main_scroll.overlay_scrolling = false;
@@ -86,26 +87,29 @@ public class Akira.Layouts.MainViewCanvas : Gtk.Grid {
             canvas.convert_to_pixels (ref scroll_origin_x, ref scroll_origin_y);
         });
 
-        canvas.scroll_event.connect (on_scroll);
+        // TODO event-controller!
+        //canvas.scroll_event.connect (on_scroll);
 
-        main_scroll.add (canvas);
+        main_scroll.set_child (canvas);
 
-        main_overlay.add (main_scroll);
+        main_overlay.set_child (main_scroll);
 
-        add (main_overlay);
+        attach (main_overlay, 0, 0);
     }
 
     public bool on_scroll (Gdk.ScrollEvent event) {
-        bool is_shift = (event.state & Gdk.ModifierType.SHIFT_MASK) > 0;
-        bool is_ctrl = (event.state & Gdk.ModifierType.CONTROL_MASK) > 0;
+        bool is_shift = (event.get_modifier_state () & Gdk.ModifierType.SHIFT_MASK) > 0;
+        bool is_ctrl = (event.get_modifier_state () & Gdk.ModifierType.CONTROL_MASK) > 0;
 
+        double pos_x, pos_y;
         double delta_x, delta_y;
-        event.get_scroll_deltas (out delta_x, out delta_y);
+        event.get_position (out pos_x, out pos_y);
+        event.get_deltas (out delta_x, out delta_y);
 
         if (is_ctrl) {
             var norm_scale = canvas.scale / Lib.ViewCanvas.MAX_SCALE;
             delta_y *= 1 - (1 - norm_scale) * (1 - norm_scale);
-            window.event_bus.adjust_zoom (-delta_y, false, Geometry.Point (event.x, event.y));
+            window.event_bus.adjust_zoom (-delta_y, false, Geometry.Point (pos_x, pos_y));
             return true;
         }
 

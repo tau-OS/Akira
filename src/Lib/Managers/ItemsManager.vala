@@ -411,8 +411,8 @@ public class Akira.Lib.Managers.ItemsManager : Object {
             //new Lib.Components.Coordinates (x + i * 60, y),
             new Lib.Components.Coordinates (x, y),
             new Lib.Components.Size (50.0, 50.0, false),
-            new Lib.Components.Borders.single_color (Lib.Components.Color (0.3, 0.3, 0.3, 1.0), 2),
-            new Lib.Components.Fills.single_color (Lib.Components.Color (0.0, 0.0, 0.0, 1.0))
+            new Lib.Components.Borders.single_color (Lib.Components.Color (0.3f, 0.3f, 0.3f, 1.0f), 2),
+            new Lib.Components.Fills.single_color (Lib.Components.Color (0.0f, 0.0f, 0.0f, 1.0f))
         );
 
         add_item_to_origin (new_rect);
@@ -456,8 +456,8 @@ public class Akira.Lib.Managers.ItemsManager : Object {
                 //new Lib.Components.Coordinates (x + i * 60, y),
                 new Lib.Components.Coordinates (x, y),
                 new Lib.Components.Size (50.0, 50.0, false),
-                new Lib.Components.Borders.single_color (Lib.Components.Color (0.3, 0.3, 0.3, 1.0), 2),
-                new Lib.Components.Fills.single_color (Lib.Components.Color (0.0, 0.0, 0.0, 1.0))
+                new Lib.Components.Borders.single_color (Lib.Components.Color (0.3f, 0.3f, 0.3f, 1.0f), 2),
+                new Lib.Components.Fills.single_color (Lib.Components.Color (0.0f, 0.0f, 0.0f, 1.0f))
             );
 
             add_item_to_group (group.id, new_rect, true);

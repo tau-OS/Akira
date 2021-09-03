@@ -42,7 +42,7 @@ public class Akira.ViewLayers.ViewLayerHover : ViewLayer {
         if (canvas == null || drawable == null) {
             return;
         }
-        var color = Gdk.RGBA () { red = 0.25, green = 0.79, blue = 0.98, alpha = 1.0 };
+        var color = Gdk.RGBA () { red = 0.25f, green = 0.79f, blue = 0.98f, alpha = 1.0f };
         drawable.paint_hover (context, color, UI_LINE_WIDTH, target_bounds, scale);
         last_drawn_bb = drawable.bounds;
     }

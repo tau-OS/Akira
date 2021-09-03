@@ -21,18 +21,18 @@
 
 public class Akira.Window : Gtk.ApplicationWindow {
     public FileFormat.AkiraFile? akira_file = null;
-    public FileFormat.FileManager file_manager;
+    //public FileFormat.FileManager file_manager;
 
     public weak Akira.Application app { get; construct; }
     public Akira.Services.EventBus event_bus;
 
     public Akira.Services.ActionManager action_manager;
-    public Akira.Layouts.HeaderBar headerbar;
+    ////public Akira.Layouts.HeaderBar headerbar;
     public Akira.Layouts.MainWindow main_window;
-    public Akira.Utils.Dialogs dialogs;
+    //public Akira.Utils.Dialogs dialogs;
 
-    public SimpleActionGroup actions { get; construct; }
-    // public Gtk.AccelGroup accel_group { get; construct; }
+    //public SimpleActionGroup actions { get; construct; }
+    //// public Gtk.AccelGroup accel_group { get; construct; }
 
     public bool edited { get; set; default = false; }
 
@@ -49,127 +49,127 @@ public class Akira.Window : Gtk.ApplicationWindow {
         // add_accel_group (accel_group);
 
         event_bus = new Akira.Services.EventBus ();
-        action_manager = new Akira.Services.ActionManager (app, this);
+        //action_manager = new Akira.Services.ActionManager (app, this);
 
-        headerbar = new Akira.Layouts.HeaderBar (this);
-        file_manager = new Akira.FileFormat.FileManager (this);
+        //headerbar = new Akira.Layouts.HeaderBar (this);
+        //file_manager = new Akira.FileFormat.FileManager (this);
         main_window = new Akira.Layouts.MainWindow (this);
 
         build_ui ();
 
-        move (settings.pos_x, settings.pos_y);
+        //move (settings.pos_x, settings.pos_y);
 
         show_app ();
 
         // Let the canvas grab the focus after the app is visible.
-        main_window.focus_canvas ();
+        //main_window.focus_canvas ();
 
-        event_bus.file_edited.connect (on_file_edited);
-        event_bus.file_saved.connect (on_file_saved);
+        //event_bus.file_edited.connect (on_file_edited);
+        //event_bus.file_saved.connect (on_file_saved);
     }
 
     private void build_ui () {
-        set_titlebar (headerbar);
-        set_border_width (0);
+        //set_titlebar (headerbar);
+        //set_border_width (0);
         if (Constants.PROFILE == "development") {
-            headerbar.get_style_context ().add_class ("devel");
+            //headerbar.get_style_context ().add_class ("devel");
         }
 
-        delete_event.connect ((e) => {
-            return before_destroy ();
-        });
+        // TODO ASAP
+        //delete_event.connect ((e) => {
+        //    return before_destroy ();
+        //});
 
-        add (main_window);
+        set_child (main_window);
     }
 
     /*
      * Restore previously saved size and panels positions.
      */
     private void apply_user_settings () {
-        resize (settings.window_width, settings.window_height);
-        main_window.pane.position = settings.left_paned;
-        main_window.pane2.position = settings.right_paned;
+        //resize (settings.window_width, settings.window_height);
+        //main_window.pane.position = settings.left_paned;
+        //main_window.pane2.position = settings.right_paned;
     }
 
-    private void on_file_edited () {
-        edited = true;
-    }
+    //private void on_file_edited () {
+    //    edited = true;
+    //}
 
-    private void on_file_saved () {
-        edited = false;
-    }
+    //private void on_file_saved () {
+    //    edited = false;
+    //}
 
-    public bool before_destroy () {
-        update_status ();
+    //public bool before_destroy () {
+    //    update_status ();
 
-        if (!edited) {
-            close_current_file ();
-            app.get_active_window ().destroy ();
-            on_destroy ();
-        }
+    //    if (!edited) {
+    //        close_current_file ();
+    //        app.get_active_window ().destroy ();
+    //        on_destroy ();
+    //    }
 
-        // if (edited) {
-        //     var dialog = dialogs.message_dialog (
-        //         _("Are you sure you want to quit?"),
-        //         _("All unsaved data will be lost and impossible to recover."),
-        //         "system-shutdown",
-        //         _("Quit without saving!"),
-        //         _("Save file")
-        //     );
+    //    // if (edited) {
+    //    //     var dialog = dialogs.message_dialog (
+    //    //         _("Are you sure you want to quit?"),
+    //    //         _("All unsaved data will be lost and impossible to recover."),
+    //    //         "system-shutdown",
+    //    //         _("Quit without saving!"),
+    //    //         _("Save file")
+    //    //     );
 
-        //     dialog.show_all ();
+    //    //     dialog.show_all ();
 
-        //     dialog.response.connect ((id) => {
-        //         switch (id) {
-        //             case Gtk.ResponseType.ACCEPT:
-        //                 dialog.destroy ();
-        //                 close_current_file ();
-        //                 app.get_active_window ().destroy ();
-        //                 on_destroy ();
-        //                 break;
-        //             case 2:
-        //                 dialog.destroy ();
-        //                 file_manager.save_file ();
-        //                 break;
-        //             default:
-        //                 dialog.destroy ();
-        //                 break;
-        //         }
-        //     });
+    //    //     dialog.response.connect ((id) => {
+    //    //         switch (id) {
+    //    //             case Gtk.ResponseType.ACCEPT:
+    //    //                 dialog.destroy ();
+    //    //                 close_current_file ();
+    //    //                 app.get_active_window ().destroy ();
+    //    //                 on_destroy ();
+    //    //                 break;
+    //    //             case 2:
+    //    //                 dialog.destroy ();
+    //    //                 file_manager.save_file ();
+    //    //                 break;
+    //    //             default:
+    //    //                 dialog.destroy ();
+    //    //                 break;
+    //    //         }
+    //    //     });
 
-        //     dialog.run ();
-        // }
+    //    //     dialog.run ();
+    //    // }
 
-        return true;
-    }
+    //    return true;
+    //}
 
-    public void on_destroy () {
-        uint length = app.windows.length ();
+    //public void on_destroy () {
+    //    uint length = app.windows.length ();
 
-        if (length == 0) {
-            app.quit ();
-        }
-    }
+    //    if (length == 0) {
+    //        app.quit ();
+    //    }
+    //}
 
-    private void update_status () {
-        int width, height, x, y;
+    //private void update_status () {
+    //    int width, height, x, y;
 
-        get_size (out width, out height);
-        get_position (out x, out y);
+    //    get_size (out width, out height);
+    //    get_position (out x, out y);
 
-        settings.pos_x = x;
-        settings.pos_y = y;
-        settings.window_width = width;
-        settings.window_height = height;
-        settings.left_paned = main_window.pane.get_position ();
-        settings.right_paned = main_window.pane2.get_position ();
-    }
+    //    settings.pos_x = x;
+    //    settings.pos_y = y;
+    //    settings.window_width = width;
+    //    settings.window_height = height;
+    //    settings.left_paned = main_window.pane.get_position ();
+    //    settings.right_paned = main_window.pane2.get_position ();
+    //}
 
     public void show_app () {
         apply_user_settings ();
-        show_all ();
         show ();
-        present ();
+        //present ();
     }
 
     public void open_file (File file) {

@@ -37,7 +37,7 @@ public class Akira.Lib.Components.CompiledFill : Copyable<CompiledFill> {
     }
 
     public CompiledFill.as_empty () {
-        _color = Gdk.RGBA () { red = 0.0, green = 0.0, blue = 0.0, alpha = 0.0};
+        _color = Gdk.RGBA () { red = 0.0f, green = 0.0f, blue = 0.0f, alpha = 0.0f};
         _visible = false;
     }
 
@@ -49,7 +49,7 @@ public class Akira.Lib.Components.CompiledFill : Copyable<CompiledFill> {
         var rgba_fill = Gdk.RGBA ();
         bool has_colors = false;
         // Set an initial arbitrary color with full transparency.
-        rgba_fill.alpha = 0;
+        rgba_fill.alpha = 0.0f;
 
         if (components == null) {
             return new CompiledFill (rgba_fill, has_colors);
@@ -77,7 +77,7 @@ public class Akira.Lib.Components.CompiledFill : Copyable<CompiledFill> {
         // Apply the mixed RGBA value only if we had one.
         if (has_colors && opacity != null) {
             // Keep in consideration the global opacity to properly update the fill color.
-            rgba_fill.alpha = rgba_fill.alpha * opacity.opacity / 100;
+            rgba_fill.alpha = rgba_fill.alpha * opacity.opacity / 100.0f;
         }
 
         return new CompiledFill (rgba_fill, has_colors);

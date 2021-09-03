@@ -110,7 +110,7 @@ public struct Akira.Lib.Components.Components {
     }
 
     public static Opacity default_opacity () {
-        return new Opacity (100.0);
+        return new Opacity (100.0f);
     }
 
     public static Transform default_transform () {

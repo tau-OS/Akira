@@ -64,14 +64,14 @@ public class Akira.Lib.ViewCanvas : ViewLayers.BaseCanvas {
     }
 
     construct {
-        events |= Gdk.EventMask.KEY_PRESS_MASK;
-        events |= Gdk.EventMask.BUTTON_PRESS_MASK;
-        events |= Gdk.EventMask.BUTTON_RELEASE_MASK;
-        events |= Gdk.EventMask.POINTER_MOTION_MASK;
-        events |= Gdk.EventMask.SCROLL_MASK;
-        events |= Gdk.EventMask.SMOOTH_SCROLL_MASK;
-        events |= Gdk.EventMask.TOUCHPAD_GESTURE_MASK;
-        events |= Gdk.EventMask.TOUCH_MASK;
+        //events |= Gdk.EventMask.KEY_PRESS_MASK;
+        //events |= Gdk.EventMask.BUTTON_PRESS_MASK;
+        //events |= Gdk.EventMask.BUTTON_RELEASE_MASK;
+        //events |= Gdk.EventMask.POINTER_MOTION_MASK;
+        //events |= Gdk.EventMask.SCROLL_MASK;
+        //events |= Gdk.EventMask.SMOOTH_SCROLL_MASK;
+        //events |= Gdk.EventMask.TOUCHPAD_GESTURE_MASK;
+        //events |= Gdk.EventMask.TOUCH_MASK;
 
         items_manager = new Lib.Managers.ItemsManager (this);
         selection_manager = new Lib.Managers.SelectionManager (this);
@@ -183,196 +183,196 @@ public class Akira.Lib.ViewCanvas : ViewLayers.BaseCanvas {
     public void focus_canvas () {
         // TODO
         // grab_focus (get_root_item ());
-        grab_focus ();
+        //grab_focus ();
     }
 
-    public override bool key_press_event (Gdk.KeyEvent event) {
-        uint uppercase_keyval = Gdk.keyval_to_upper (event.keyval);
+    //public override bool key_press_event (Gdk.KeyEvent event) {
+    //    uint uppercase_keyval = Gdk.keyval_to_upper (event.keyval);
 
-        switch (uppercase_keyval) {
-            case Gdk.Key.Control_L:
-            case Gdk.Key.Control_R:
-                ctrl_is_pressed = true;
-                //toggle_item_ghost (false);
-                break;
+    //    switch (uppercase_keyval) {
+    //        case Gdk.Key.Control_L:
+    //        case Gdk.Key.Control_R:
+    //            ctrl_is_pressed = true;
+    //            //toggle_item_ghost (false);
+    //            break;
 
-            case Gdk.Key.Shift_L:
-            case Gdk.Key.Shift_R:
-                shift_is_pressed = true;
-                break;
+    //        case Gdk.Key.Shift_L:
+    //        case Gdk.Key.Shift_R:
+    //            shift_is_pressed = true;
+    //            break;
 
-            case Gdk.Key.Alt_L:
-            case Gdk.Key.Alt_R:
-                // Show the ghost item only if the CTRL button is not pressed.
-                //toggle_item_ghost (!ctrl_is_pressed);
-                break;
+    //        case Gdk.Key.Alt_L:
+    //        case Gdk.Key.Alt_R:
+    //            // Show the ghost item only if the CTRL button is not pressed.
+    //            //toggle_item_ghost (!ctrl_is_pressed);
+    //            break;
 
-        }
+    //    }
 
-        if (mode_manager.key_press_event (event)) {
-            return true;
-        }
+    //    if (mode_manager.key_press_event (event)) {
+    //        return true;
+    //    }
 
-        switch (uppercase_keyval) {
-            case Gdk.Key.space:
-                mode_manager.start_panning_mode ();
-                if (mode_manager.key_press_event (event)) {
-                    return true;
-                }
-                break;
+    //    switch (uppercase_keyval) {
+    //        case Gdk.Key.space:
+    //            mode_manager.start_panning_mode ();
+    //            if (mode_manager.key_press_event (event)) {
+    //                return true;
+    //            }
+    //            break;
 
-            case Gdk.Key.Up:
-            case Gdk.Key.Down:
-            case Gdk.Key.Right:
-            case Gdk.Key.Left:
-                //window.event_bus.move_item_from_canvas (event);
-                //window.event_bus.detect_artboard_change ();
-                return true;
-            default:
-                break;
-        }
+    //        case Gdk.Key.Up:
+    //        case Gdk.Key.Down:
+    //        case Gdk.Key.Right:
+    //        case Gdk.Key.Left:
+    //            //window.event_bus.move_item_from_canvas (event);
+    //            //window.event_bus.detect_artboard_change ();
+    //            return true;
+    //        default:
+    //            break;
+    //    }
 
-        if (uppercase_keyval == Gdk.Key.J) {
-            items_manager.debug_add_rectangles (10000, true);
-            return true;
-        }
+    //    if (uppercase_keyval == Gdk.Key.J) {
+    //        items_manager.debug_add_rectangles (10000, true);
+    //        return true;
+    //    }
 
-        if (uppercase_keyval == Gdk.Key.G) {
-            items_manager.add_debug_group (300, 300, true);
-            return true;
-        }
+    //    if (uppercase_keyval == Gdk.Key.G) {
+    //        items_manager.add_debug_group (300, 300, true);
+    //        return true;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
-    public override bool key_release_event (Gdk.KeyEvent event) {
-        uint uppercase_keyval = Gdk.keyval_to_upper (event.keyval);
+    //public override bool key_release_event (Gdk.KeyEvent event) {
+    //    uint uppercase_keyval = Gdk.keyval_to_upper (event.keyval);
 
-        switch (uppercase_keyval) {
-            case Gdk.Key.Control_L:
-            case Gdk.Key.Control_R:
-                ctrl_is_pressed = false;
-                break;
+    //    switch (uppercase_keyval) {
+    //        case Gdk.Key.Control_L:
+    //        case Gdk.Key.Control_R:
+    //            ctrl_is_pressed = false;
+    //            break;
 
-            case Gdk.Key.Shift_L:
-            case Gdk.Key.Shift_R:
-                shift_is_pressed = false;
-                break;
+    //        case Gdk.Key.Shift_L:
+    //        case Gdk.Key.Shift_R:
+    //            shift_is_pressed = false;
+    //            break;
 
-            case Gdk.Key.Alt_L:
-            case Gdk.Key.Alt_R:
-                //toggle_item_ghost (false);
-                break;
-        }
+    //        case Gdk.Key.Alt_L:
+    //        case Gdk.Key.Alt_R:
+    //            //toggle_item_ghost (false);
+    //            break;
+    //    }
 
-        if (mode_manager.key_release_event (event)) {
-            return true;
-        }
+    //    if (mode_manager.key_release_event (event)) {
+    //        return true;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
-    public override bool button_press_event (Gdk.ButtonEvent event) {
-        base.button_press_event (event);
+    //public override bool button_press_event (Gdk.ButtonEvent event) {
+    //    base.button_press_event (event);
 
-        hover_manager.remove_hover_effect ();
+    //    hover_manager.remove_hover_effect ();
 
-        event.x = event.x / current_scale;
-        event.y = event.y / current_scale;
+    //    event.x = event.x / current_scale;
+    //    event.y = event.y / current_scale;
 
-        if (mode_manager.button_press_event (event)) {
-            return true;
-        }
+    //    if (mode_manager.button_press_event (event)) {
+    //        return true;
+    //    }
 
-        if (event.button == Gdk.BUTTON_MIDDLE) {
-            mode_manager.start_panning_mode ();
-            if (mode_manager.button_press_event (event)) {
-                return true;
-            }
-        }
+    //    if (event.button == Gdk.BUTTON_MIDDLE) {
+    //        mode_manager.start_panning_mode ();
+    //        if (mode_manager.button_press_event (event)) {
+    //            return true;
+    //        }
+    //    }
 
-        if (handle_selection_press_event (event)) {
-            return true;
-        }
+    //    if (handle_selection_press_event (event)) {
+    //        return true;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
     /*
      * Check if a selection exists, and transform it appropriately, return true if
      * the event should be abosrbed.
      */
-    private bool handle_selection_press_event (Gdk.ButtonEvent event) {
-        var nob_clicked = nob_manager.hit_test (event.x, event.y);
+    //private bool handle_selection_press_event (Gdk.ButtonEvent event) {
+    //    var nob_clicked = nob_manager.hit_test (event.x, event.y);
 
-        if (nob_clicked == Utils.Nobs.Nob.NONE) {
-            // If no nob is selected, we test for an item.
-            var target = items_manager.node_at_canvas_position (
-                event.x,
-                event.y,
-                Drawables.Drawable.HitTestType.SELECT
-            );
+    //    if (nob_clicked == Utils.Nobs.Nob.NONE) {
+    //        // If no nob is selected, we test for an item.
+    //        var target = items_manager.node_at_canvas_position (
+    //            event.x,
+    //            event.y,
+    //            Drawables.Drawable.HitTestType.SELECT
+    //        );
 
-            if (target != null) {
-                if (!selection_manager.item_selected (target.id)) {
-                    selection_manager.add_to_selection (target.id);
-                }
-            }
-            else if (!selection_manager.selection.bounding_box ().contains (event.x, event.y)) {
-                // Selection area was not clicked, so we reset the selection
-                selection_manager.reset_selection ();
-            }
-        }
+    //        if (target != null) {
+    //            if (!selection_manager.item_selected (target.id)) {
+    //                selection_manager.add_to_selection (target.id);
+    //            }
+    //        }
+    //        else if (!selection_manager.selection.bounding_box ().contains (event.x, event.y)) {
+    //            // Selection area was not clicked, so we reset the selection
+    //            selection_manager.reset_selection ();
+    //        }
+    //    }
 
-        if (!selection_manager.is_empty ()) {
-            var new_mode = new Lib.Modes.TransformMode (this, nob_clicked);
-            mode_manager.register_mode (new_mode);
+    //    if (!selection_manager.is_empty ()) {
+    //        var new_mode = new Lib.Modes.TransformMode (this, nob_clicked);
+    //        mode_manager.register_mode (new_mode);
 
-            if (mode_manager.button_press_event (event)) {
-                return true;
-            }
-        }
+    //        if (mode_manager.button_press_event (event)) {
+    //            return true;
+    //        }
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
-    public override bool button_release_event (Gdk.ButtonEvent event) {
-        event.x = event.x / current_scale;
-        event.y = event.y / current_scale;
+    //public override bool button_release_event (Gdk.ButtonEvent event) {
+    //    event.x = event.x / current_scale;
+    //    event.y = event.y / current_scale;
 
-        if (mode_manager.button_release_event (event)) {
-            return true;
-        }
-        return false;
-    }
+    //    if (mode_manager.button_release_event (event)) {
+    //        return true;
+    //    }
+    //    return false;
+    //}
 
-    public override bool motion_notify_event (Gdk.MotionEvent event) {
-        event.x = event.x / current_scale;
-        event.y = event.y / current_scale;
+    //public override bool motion_notify_event (Gdk.MotionEvent event) {
+    //    event.x = event.x / current_scale;
+    //    event.y = event.y / current_scale;
 
-        if (mode_manager.motion_notify_event (event)) {
-            return true;
-        }
+    //    if (mode_manager.motion_notify_event (event)) {
+    //        return true;
+    //    }
 
-        var target_nob = nob_manager.hit_test (event.x, event.y);
+    //    var target_nob = nob_manager.hit_test (event.x, event.y);
 
-        if (target_nob != Utils.Nobs.Nob.NONE) {
-            hover_manager.remove_hover_effect ();
-            if (hovered_nob != target_nob) {
-                hovered_nob = target_nob;
-                set_cursor_by_interaction_mode ();
-            }
-            return true;
-        }
-        else if (hovered_nob != Utils.Nobs.Nob.NONE) {
-            hovered_nob = Utils.Nobs.Nob.NONE;
-            set_cursor_by_interaction_mode ();
-        }
+    //    if (target_nob != Utils.Nobs.Nob.NONE) {
+    //        hover_manager.remove_hover_effect ();
+    //        if (hovered_nob != target_nob) {
+    //            hovered_nob = target_nob;
+    //            set_cursor_by_interaction_mode ();
+    //        }
+    //        return true;
+    //    }
+    //    else if (hovered_nob != Utils.Nobs.Nob.NONE) {
+    //        hovered_nob = Utils.Nobs.Nob.NONE;
+    //        set_cursor_by_interaction_mode ();
+    //    }
 
-        hover_manager.on_mouse_over (event.x, event.y);
+    //    hover_manager.on_mouse_over (event.x, event.y);
 
-        return false;
-    }
+    //    return false;
+    //}
 
     // private void set_cursor (Gdk.CursorType? cursor_type) {
     //     current_cursor = (cursor_type == null ? Gdk.CursorType.ARROW : cursor_type);
@@ -381,54 +381,54 @@ public class Akira.Lib.ViewCanvas : ViewLayers.BaseCanvas {
     // }
 
     // #TODO temporary
-    public override bool draw (Cairo.Context ctx) {
-        base.draw (ctx);
+    //public override bool draw (Cairo.Context ctx) {
+    //    base.draw (ctx);
 
-        // Draw damage
-        //var r = GLib.Random.double_range (0, 1.0);
-        //var g = GLib.Random.double_range (0, 1.0);
-        //var b = GLib.Random.double_range (0, 1.0);
-        //var col = Gdk.RGBA () { red = r, green = g, blue = b, alpha = 0.3};
-        //var xadj = hadjustment.value;
-        //var yadj = vadjustment.value;
+    //    // Draw damage
+    //    //var r = GLib.Random.double_range (0, 1.0);
+    //    //var g = GLib.Random.double_range (0, 1.0);
+    //    //var b = GLib.Random.double_range (0, 1.0);
+    //    //var col = Gdk.RGBA () { red = r, green = g, blue = b, alpha = 0.3};
+    //    //var xadj = hadjustment.value;
+    //    //var yadj = vadjustment.value;
 
-        //var cs = current_scale;
+    //    //var cs = current_scale;
 
-        //ctx.save ();
-        //ctx.rectangle (xadj + 0, xadj + 0, xadj + 3000, xadj + 3000);
-        //ctx.set_source_rgba (r, g, b, 0.3);
-        //ctx.fill ();
+    //    //ctx.save ();
+    //    //ctx.rectangle (xadj + 0, xadj + 0, xadj + 3000, xadj + 3000);
+    //    //ctx.set_source_rgba (r, g, b, 0.3);
+    //    //ctx.fill ();
 
-        //ctx.restore ();
+    //    //ctx.restore ();
 
-        //draw_debug_rect (ctx, to_draw_1.bounding_box, Gdk.RGBA () { red = 1.0, green = 0.0, blue = 0.0, alpha = 1.0});
-        draw_debug_rotated_rect (ctx, to_draw_1, Gdk.RGBA () { red = 0.0, green = 1.0, blue = 0.5, alpha = 1.0});
+    //    //draw_debug_rect (ctx, to_draw_1.bounding_box, Gdk.RGBA () { red = 1.0, green = 0.0, blue = 0.0, alpha = 1.0});
+    //    draw_debug_rotated_rect (ctx, to_draw_1, Gdk.RGBA () { red = 0.0, green = 1.0, blue = 0.5, alpha = 1.0});
 
-        //draw_debug_rect (ctx, to_draw_2.bounding_box, Gdk.RGBA () { red = 5.0, green = 0.0, blue = 0.0, alpha = 1.0});
-        draw_debug_rotated_rect (ctx, to_draw_2, Gdk.RGBA () { red = 1.0, green = 0.0, blue = 0.0, alpha = 1.0});
+    //    //draw_debug_rect (ctx, to_draw_2.bounding_box, Gdk.RGBA () { red = 5.0, green = 0.0, blue = 0.0, alpha = 1.0});
+    //    draw_debug_rotated_rect (ctx, to_draw_2, Gdk.RGBA () { red = 1.0, green = 0.0, blue = 0.0, alpha = 1.0});
 
-        draw_debug_rotated_rect (ctx, to_draw_3, Gdk.RGBA () { red = 0.0, green = 0.0, blue = 1.0, alpha = 1.0});
+    //    draw_debug_rotated_rect (ctx, to_draw_3, Gdk.RGBA () { red = 0.0, green = 0.0, blue = 1.0, alpha = 1.0});
 
-        if (debug_point1_x > 0 && debug_point1_y > 0) {
-            draw_debug_point (
-                ctx,
-                debug_point1_x,
-                debug_point1_y,
-                Gdk.RGBA () { red = 0.0, green = 1.0, blue = 0.5, alpha = 1.0}
-            );
-        }
+    //    if (debug_point1_x > 0 && debug_point1_y > 0) {
+    //        draw_debug_point (
+    //            ctx,
+    //            debug_point1_x,
+    //            debug_point1_y,
+    //            Gdk.RGBA () { red = 0.0, green = 1.0, blue = 0.5, alpha = 1.0}
+    //        );
+    //    }
 
-        if (debug_point2_x > 0 && debug_point2_y > 0) {
-            draw_debug_point (
-                ctx,
-                debug_point2_x,
-                debug_point2_y,
-                Gdk.RGBA () { red = 1.0, green = 0.0, blue = 0.0, alpha = 1.0}
-            );
-        }
+    //    if (debug_point2_x > 0 && debug_point2_y > 0) {
+    //        draw_debug_point (
+    //            ctx,
+    //            debug_point2_x,
+    //            debug_point2_y,
+    //            Gdk.RGBA () { red = 1.0, green = 0.0, blue = 0.0, alpha = 1.0}
+    //        );
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
     public void draw_debug_point (Cairo.Context ctx, double point_x, double point_y, Gdk.RGBA color) {
         var xadj = hadjustment.value;
